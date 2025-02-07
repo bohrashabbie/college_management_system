@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view for teacher details -->
+    <record id="view_teacher_details_form" model="ir.ui.view">
+        <field name="name">teacher.details.form</field>
+        <field name="model">teacher.details</field>
+        <field name="arch" type="xml">
+            <form string="Teacher Details">
+                <sheet>
+                    <field name="teacher_image" widget="image" class="oe_avatar" options="{'size': [150, 150]}"/>
+                <h1>
+                    <field name = "tname" string = "Teacher name"/>
+                </h1>
+                    <group>
+                        <group>
+                            <field name="t_id"/>
+                            <field name="teacher_email"/>
+                            <field name = "teacher_phone"/>
+                        </group>
+                        <group>
+                            <field name="sub_of_teacher"/>
+                            <field name="tgender"/>
+                            <field name="tage"/>
+                            <field name="date_of_birth"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Teacher Description">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </page>
+                            <page string = "Student Associated with teacher">
+                            <group>
+                                <field name = "student_associated"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban view for teacher details -->
+<record id="teacher_details_kanban_view" model="ir.ui.view">
+    <field name="name">teacher.details.kanban</field>
+    <field name="model">teacher.details</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+            <field name="teacher_image"/>
+            <field name="tname"/>
+            <field name="teacher_email"/>
+            <templates>
+                <t t-name="card">
+                    <div class="d-flex mb-2">
+                        <!-- Student image on the left side -->
+                        <div class="oe_avatar_container" style="width: 120px; height: 120px; margin-right: 15px;">
+                            <field name="teacher_image" widget="image" class="oe_avatar" options="{'size': [120, 120]}"/>
+                        </div>
+                        
+                        <!-- Right side with student name and email -->
+                        <div class="flex-grow-1">
+                            <strong class="text-dark fs-5">
+                                <field name="tname"/>
+                            </strong>
+                            <div class="text-muted">
+                                <field name="teacher_email"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+    <!-- Tree view for teacher details -->
+    <record id="view_teacher_details_tree" model="ir.ui.view">
+        <field name="name">teacher.details.tree</field>
+        <field name="model">teacher.details</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="tname"/>
+                <field name="t_id"/>
+                <field name="sub_of_teacher"/>
+                <field name="date_of_birth"/>
+                <field name="tage" string="Teacher Age"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Window Action for opening the teacher details views -->
+    <record id="action_teacher_details" model="ir.actions.act_window">
+        <field name="name">Teacher Details</field>
+        <field name="res_model">teacher.details</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <!-- Menu Structure for navigation -->
+    <menuitem id="college_management_system_main_menu" name="College Management" sequence="1"/>
+    
+    <menuitem id="teacher_main_menu" name="Teacher" parent="college_management_system_main_menu" groups="group_teacher" sequence="1"/>
+    <menuitem id="teacher_details_sub_menu" name="Teacher Details" parent="teacher_main_menu" action="action_teacher_details" sequence="1"/>
+
+</odoo>

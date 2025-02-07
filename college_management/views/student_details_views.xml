@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View for Student -->
+    <record id="view_student_details_form" model="ir.ui.view">
+        <field name="name">student.details.form</field>
+        <field name="model">student.details</field>
+        <field name="arch" type="xml">
+            <form string="student Details">
+                <sheet>
+                    <field name="student_image" widget="image" class="oe_avatar" options="{'size': [150, 150]}"/>
+                <h1>
+                    <field name = "sname" string = "Student name"/>
+                </h1>
+                    <group>
+                        <group>
+                            <field name = "last_name" string = "Last Name"/>
+                            <field name="roll_num"/>
+                            <field name="student_email"/>
+                            <field name = "phone"/>
+                            <field name="student_branch"/>
+                            <field name = "confirm_date"/>
+                            <field name="onboarding_status" string="Onboarding Status"/>"
+                        </group>
+                        <group>
+                            <field name = "is_active_student"/>
+                            <field name="gender"/>
+                            <field name="age"/>
+                            <field name = "professor_associate"/>
+                            <field name="birth_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="student Description">
+                            <group>
+                                <field name="student_description"/>
+                                <button id = "button_verify" name = "action_verify_wizard" string = "verify"
+                                class = "btn-primary"  type = "object"/> 
+                            </group>
+                        </page>
+                        <page string = "student Marks Details">
+                        <group>
+                        <field name = "user_name"/>
+                        <field name = "exam_type"/>
+                        <field name = "obtained_number"/>
+                        <field name = "total_number"/>
+                        <field name = "Percentage"/>
+                        </group>
+                        </page>
+                        <page string = "Subject">
+                            <group>
+                            <field name = "subject_of_student" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Kanban View for Student -->
+<record id="student_details_kanban_view" model="ir.ui.view">
+    <field name="name">student.details.kanban</field>
+    <field name="model">student.details</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+            <field name="student_image"/>
+            <field name="sname"/>
+            <field name="student_email"/>
+            <templates>
+                <t t-name="card">
+                    <div class="d-flex mb-2">
+                        <!-- Student image on the left side -->
+                        <div class="oe_avatar_container" style="width: 120px; height: 120px; margin-right: 15px;">
+                            <field name="student_image" widget="image" class="oe_avatar" options="{'size': [120, 120]}"/>
+                        </div>
+                        
+                        <!-- Right side with student name and email -->
+                        <div class="flex-grow-1">
+                            <strong class="text-dark fs-5">
+                                <field name= "sname" string = "Name"/>
+                            </strong>
+                            <div class="text-muted">
+                                <field name="student_email" string = "Email-Id"/>
+                            </div>
+                            <div>
+                                <field name = "phone" />
+                            </div>
+                            <div>
+                                <field name = "roll_num"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+
+    <!-- Tree/List View for Student -->
+    <record id="view_college_model_tree" model="ir.ui.view">
+        <field name="name">student.details.tree</field>
+        <field name="model">student.details</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sname" string="Student Name"/>
+                <field name="roll_num" string="Roll Number"/>
+                <field name="student_branch" string="Branch"/>
+                <field name = "Percentage" string = "Percentage"/>
+                <field name="birth_date" string="Date of Birth"/>
+                <field name="age" string="Age"/>
+                <field name = "onboarding_status" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="action_students_details" model="ir.actions.act_window">
+        <field name="name">Student Details</field>
+        <field name="res_model">student.details</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <!-- Menu Structure -->
+    <menuitem id="college_management_system_main_menu" name="College Management" sequence="1"/>
+    <menuitem id="student_details_main_menu" name="Students" parent="college_management_system_main_menu" groups="group_student" sequence="2"/>
+    <menuitem id="Student_details_sub_menu" name="Student Details" parent="student_details_main_menu" action="action_students_details" sequence="3"/>
+
+      <!-- <menuitem id="menu_configuration_root" name="Configuration" groups="group_admin"/> -->
+
+    <!-- Main Teacher menu, parent of Settings -->
+    <menuitem id="main_configuration_main" name="Configuration" parent="college_management_system_main_menu" groups="group_admin" sequence="4"/>
+
+    <!-- Settings menu item under Teacher -->
+    <menuitem id="menu_configuration_sub" name="Settings" parent="main_configuration_main" action="action_students_details" sequence="1"/>
+</odoo>

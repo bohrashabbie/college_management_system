@@ -1,0 +1,21 @@
+{
+    'name': 'college management system',
+    'version': '18.0.0.0',
+    'summary': 'College management system that manages the details of the college',
+    'description': 'A module to manage college details',
+    'author': 'codetrade',
+    'website': 'https://codetrade.io',
+    'category': 'Education',
+    'depends': [],
+    'data': [
+        'security/college_group.xml', 
+        'security/ir.model.access.csv',  
+        'views/student_details_views.xml',
+        'views/teacher_details_views.xml',
+        'views/course_details_views.xml',
+        'wizard/onboarding_confirmation_views.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license':'LGPL-3',
+}

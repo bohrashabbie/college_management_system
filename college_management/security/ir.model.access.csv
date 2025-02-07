@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_details,student.details,model_student_details,group_student,1,1,1,1
+access_teacher_details,teacher.details,model_teacher_details,group_teacher,1,1,1,1
+access_teacher_details,teacher.details,model_teacher_details,group_admin,1,1,1,1
+access_course_details,course.details,model_course_details,,1,1,1,1
+access_onboarding_confirmation,onboarding.confirmation,model_onboarding_confirmation,,1,1,1,1

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View for the Onboarding Confirmation Wizard -->
+    <record id="view_onboarding_confirmation_form" model="ir.ui.view">
+        <field name="name">onboarding.confirmation.form</field>
+        <field name="model">onboarding.confirmation</field>
+        <field name="arch" type="xml">
+            <form string="Onboard Students">
+                <group>
+                    <field name="confirmation_date"/>
+                    <field name="teacher_id"/>
+                    <!-- <field name="student_ids" widget="many2many_tags"/> -->
+                    <field name="course_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Confirm Onboarding" class="btn-primary"/>
+                    <button string="Cancel" type="object" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open the Wizard as a Popup -->
+    <record id="action_onboarding_confirmation" model="ir.actions.act_window">
+        <field name="name">Onboard Students</field>
+        <field name="res_model">onboarding.confirmation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
