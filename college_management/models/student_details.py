@@ -110,8 +110,8 @@ class StudentDetails(models.Model):
             else:
                 student.age = 0
 
-    @staticmethod
-    def action_verify_wizard(self):
+
+    def action_verify_wizard():
         return {
             'name': 'verify',
             'type': 'ir.actions.act_window',
