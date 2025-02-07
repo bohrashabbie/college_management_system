@@ -92,7 +92,6 @@ class StudentDetails(models.Model):
 
     @api.model
     def create(self, vals):
-        """Override create method to ensure unique roll number."""
         if "roll_num" in vals:
             existing_roll = self.env['student.details'].search([("roll_num", "=", vals["roll_num"])])
             if existing_roll:
