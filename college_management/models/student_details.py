@@ -79,10 +79,6 @@ class StudentDetails(models.Model):
         else:
             self.user_name = ''
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        """Method to create multiple records."""
-        return super(StudentDetails, self).create(vals_list)
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_true(self):
