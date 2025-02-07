@@ -29,15 +29,13 @@ class TeacherDetails(models.Model):
      def _check_email(self):
         """This function is use to validate the email"""
         for record in self:
-            if record.teacher_email:
-                if not re.match(r"[^@]+@[^@]+\.[^@]+", record.teacher_email):
+            if record.teacher_email and  not re.match(r"[^@]+@[^@]+\.[^@]+", record.teacher_email):
                     raise ValidationError("Invalid email format")
 
      @api.constrains('teacher_phone')
      def _check_phone(self):
         """This function is used to check the phone number"""
         for record in self:
-            if record.teacher_phone:
-                if not re.match(r"(0|91)?[6-9][0-9]{9}", record.teacher_phone):
+            if record.teacher_phone and  not re.match(r"(0|91)?[6-9][0-9]{9}", record.teacher_phone):
                     raise ValidationError("Please enter a valid phone number")
     
