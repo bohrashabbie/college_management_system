@@ -1,6 +1,4 @@
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
-import re
+from odoo import models, fields
 
 class CourseDetails(models.Model):
     _name = "course.details"
